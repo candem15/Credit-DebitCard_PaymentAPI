@@ -1,1 +1,26 @@
-<p>payment-detail-form works!</p>
+<form>
+  <input type="hidden" name="paymentDetailId" [value]="service.formData.paymentDetailId">
+  <div class="form-group">
+    <label>CARD OWNER NAME</label>
+    <input class="form-control form-control-lg" placeholder="Full Name" name="cardOwnerName" #cardOwnerName="ngModel"
+      [(ngModel)]="service.formData.cardOwnerName">
+  </div>
+  <div class="form-group">
+    <label>CARD NUMBER</label>
+    <input class="form-control form-control-lg" placeholder="16 Digit Card Number" maxlength="16" pattern="[0-9]"
+      name="cardNumber" #cardNumber="ngModel" [(ngModel)]="service.formData.cardNumber">
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>SECURITY CODE</label>
+      <input type="password" class="form-control form-control-lg" placeholder="CCV" maxlength="3" pattern="[0-9]"
+        name="securityCode" #securityCode="ngModel" [(ngModel)]="service.formData.securityCode">
+    </div>
+    <div class="form-group col-md-6">
+      <label>EXPIRATION DATE</label>
+      <input class="form-control form-control-lg" placeholder="MM/YY" maxlength="5" pattern="[0-9]"
+        name="expirationDate" #expirationDate="ngModel" [(ngModel)]="service.formData.expirationDate"
+        onkeyup="this.value=this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'')">
+    </div>
+  </div>
+</form>
