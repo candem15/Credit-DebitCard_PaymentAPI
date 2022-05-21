@@ -4,6 +4,27 @@
 
 <div class="row">
   <div class="col-md-6"><app-payment-detail-form></app-payment-detail-form></div>
-  <div class="col-md-6">List of elements</div>
+  <div class="col-md-6">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <td>Card Owner</td>
+          <td>Card Number</td>
+          <td>Expiration Date</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let paymentDetail of service.list">
+          <td (click)="populateForm(paymentDetail)">{{paymentDetail.cardOwnerName}}</td>
+          <td (click)="populateForm(paymentDetail)">{{paymentDetail.cardNumber}}</td>
+          <td (click)="populateForm(paymentDetail)">{{paymentDetail.expirationDate}}</td>
+          <td>
+            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(paymentDetail.paymentDetailId)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
  <!-- ng g c payment-details -s --skipTests (For Component Create)-->

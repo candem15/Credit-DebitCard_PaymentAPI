@@ -6,7 +6,7 @@ var configuration = builder.Configuration;
 
 var services = builder.Services;
 // Add services to the container.
-
+services.AddCors(); //To allow angular app to request backend
 services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();
@@ -20,6 +20,10 @@ services.AddDbContext<PaymentDetailContext>(options =>
 
 var app = builder.Build();
 
+app.UseCors(options => 
+    options.WithOrigins("http://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
